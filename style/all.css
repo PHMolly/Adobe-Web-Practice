@@ -1,0 +1,256 @@
+@charset "utf-8";
+
+/* Base ---------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+ /* 米字號做為萬用選取器, 如果希望網頁渲染比較好,建議還是有需要再去填寫即可 */
+
+}
+
+body {
+  font-family: Arial, Helvetica, "微軟正黑體", sans-serif;
+}
+
+img {
+  vertical-align: bottom;
+}
+
+/* Helper ------------------------------ */
+
+.mask {
+  overflow: hidden;
+/* 以class:mask標籤做為遮色片用, 將左右scroll bar消除, 以符合視窗大小 */
+
+}
+
+.img-resp {
+  width: 100%;
+  height: auto;
+}
+
+.row {
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+/* Layout ------------------------------- */
+
+.nav {
+  position: fixed;
+  right: 2%;
+  top: 50%;
+  margin-top: -100px;
+  z-index: 1;
+}
+
+.slide {
+  width: 100vw;
+  height: 100vh;
+      /* 將上下scroll bar消除, 以符合視窗大小 */
+
+}
+
+/* 各部位功能 ----------------------------- */
+
+.slide-ls {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300vw;
+  position: relative;
+  transition-duration: .8s;
+  transition-timing-function: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  left: 0;
+  top: 0;
+}
+
+.slide-item {
+  padding: 3rem 5rem;
+  width: 100vw;
+  /*viewport width*/
+  height: 100vh;
+      /* box-sizing: border-box 可將此模組化寫於開頭*/
+
+  overflow: auto;
+      /* 自動偵測,如果有需要就會出現側邊捲軸 */
+
+}
+
+.slide-item-pdf {
+  background-color: #333;
+}
+
+.slide-item-pr {
+  background-color: #dd1f8e;
+}
+
+.slide-item-ps {
+  background-color: #00a7e2;
+}
+
+.slide-item-ae {
+  background-color: #620294;
+}
+
+.slide-item-ai {
+  background-color: #ee9a10;
+}
+
+.slide-item-dw {
+  background-color: #84c922;
+}
+
+.pd {
+  width: 50%;
+}
+
+.pd-tit {
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.pd-intro {}
+
+.pd-desc {
+  color: #fff;
+  line-height: 1.7;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+.pd-ls {
+  display: flex;
+  flex-wrap: wrap;
+  /* width: 50%; */
+}
+
+.pd-item {
+  width: 33.33333%;
+  padding: 12px;
+}
+
+.pd-item > a {
+  -webkit-box-reflect: below -1px linear-gradient(0, rgba(0,0,0,.3), transparent 50%);
+}
+
+.nav-btn {
+  background-color: rgba(255, 255, 255, .3);
+  border: none;
+  width: 15px;
+  height: 15px;
+  text-indent: -9999px;
+  display: block;
+  margin: 15px;
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  background-color: #fff;
+}
+
+/* Module 覆蓋 ----------------------------- */
+
+.hover-overlay, .hover-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.hover-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0;
+}
+
+.hover-overlay:hover::after {
+  opacity: .5;
+}
+
+/* Module 圖標 ----------------------------- */
+
+.hover-icon i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -1rem;
+  margin-top: -1rem;
+  font-size: 2em;
+  z-index: 1;
+  color: #fff;
+  transform: scale(0);
+}
+
+.hover-icon:hover i {
+  transform: scale(1);
+}
+
+/* Module 影像 ----------------------------- */
+.hover-scale {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.hover-scale:hover>img {
+  transform: scale(1.2);
+}
+
+/* Module 轉場 ----------------------------- */
+.hover-transition::after,
+.hover-transition i,
+.hover-transition>img {
+  transition-duration: .5s;
+}
+
+/* State ---------------------------------- */
+.js-nav {
+  background-color: rgba(0,0,0,.7);
+}
+
+.js-nav-btn {
+  background-color: #fff;
+}
+
+
+
+/* RWD ----------------------------------- */
+
+@media screen and (max-width: 1024px) {
+  .pd {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  .nav {
+    top: 0;
+    left: 0;
+    right: auto;
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .slide-item {
+    padding: 4rem 2rem 2rem;
+  }
+
+  .pd {
+    width: auto;
+  }
+
+  .pd-head {
+    text-align: center;
+  }
+
+  .pd-item {
+    width: 50%;
+  }
+}
